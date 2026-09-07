@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <link rel="icon" href="assets/icon.ico" type="image/x-icon">
+    <title>Halstead Analyzer — Rust</title>
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>
+            Анализатор метрик Холстеда
+        </h1>
+
+        <p>
+            Анализ исходного кода Rust
+        </p>
+
+    </header>
+
+    <section class="file-section">
+        <label
+            for="fileInput"
+            class="file-button"
+        >
+            Открыть .rs файл
+        </label>
+
+        <input
+            type="file"
+            id="fileInput"
+            accept=".rs"
+            hidden
+        >
+
+        <span id="fileName">
+            Файл не выбран
+        </span>
+
+    </section>
+
+    <section class="editor-section">
+        <div class="section-title">
+            Исходный код Rust
+        </div>
+
+        <textarea
+            id="codeInput"
+            spellcheck="false"
+            placeholder="Вставьте Rust-код или откройте .rs файл..."
+        ></textarea>
+
+        <div class="editor-buttons">
+            <button
+                id="analyzeButton"
+                class="primary-button"
+            >
+                Анализировать
+            </button>
+        </div>
+    </section>
+
+    <section class="metrics-section">
+        <h2>
+            Базовые метрики
+        </h2>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-name">
+                    η1
+                </div>
+                <div class="metric-description">
+                    Уникальные операторы
+                </div>
+                <div
+                    class="metric-value"
+                    id="eta1"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">
+                    η2
+                </div>
+                <div class="metric-description">
+                    Уникальные операнды
+                </div>
+                <div
+                    class="metric-value"
+                    id="eta2"
+                >
+                    0
+                </div>
+            </div>
+
+
+            <div class="metric-card">
+                <div class="metric-name">
+                    N1
+                </div>
+                <div class="metric-description">
+                    Всего операторов
+                </div>
+                <div
+                    class="metric-value"
+                    id="n1"
+                >
+                    0
+                </div>
+            </div>
+
+
+            <div class="metric-card">
+                <div class="metric-name">
+                    N2
+                </div>
+                <div class="metric-description">
+                    Всего операндов
+                </div>
+                <div
+                    class="metric-value"
+                    id="n2"
+                >
+                    0
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="metrics-section">
+        <h2>
+            Производные метрики
+        </h2>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-name">
+                    η
+                </div>
+                <div class="metric-description">
+                    Словарь программы
+                </div>
+                <div
+                    class="metric-value"
+                    id="eta"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">
+                    N
+                </div>
+                <div class="metric-description">
+                    Длина программы
+                </div>
+                <div
+                    class="metric-value"
+                    id="n"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="metric-card volume-card">
+                <div class="metric-name">
+                    V
+                </div>
+                <div class="metric-description">
+                    Объём программы
+                </div>
+                <div
+                    class="metric-value"
+                    id="volume"
+                >
+                    0
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="table-section">
+        <h2>
+            Операторы
+        </h2>
+        <div class="table-wrapper">
+            <table id="operatorsTable">
+                <thead>
+                    <tr>
+                        <th>Индекс</th>
+                        <th>Оператор</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="table-section">
+        <h2>
+            Операнды
+        </h2>
+        <div class="table-wrapper">
+            <table id="operandsTable">
+                <thead>
+                    <tr>
+                        <th>Индекс</th>
+                        <th>Операнд</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        Метрики Холстеда для языка Rust
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

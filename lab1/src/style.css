@@ -1,0 +1,219 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+.container {
+    width: min(1400px, 94%);
+    margin: 0 auto;
+    padding: 30px 0 50px;
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+.header p {
+    margin: 0;
+    color: #666;
+    font-size: 17px;
+}
+
+.file-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow:0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.file-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #1976d2;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.file-button:hover {
+    background: #125ca3;
+}
+
+#fileName {
+    color: #666;
+    word-break: break-all;
+}
+
+.editor-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#codeInput {
+    width: 100%;
+    min-height: 500px;
+    resize: vertical;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #1e1e1e;
+    color: #e6e6e6;
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+    line-height: 1.5;
+    outline: none;
+}
+
+#codeInput:focus {
+    border-color: #1976d2;
+}
+
+.editor-buttons {
+    margin-top: 15px;
+}
+
+.primary-button {
+    border: none;
+    padding: 11px 25px;
+    background: #1976d2;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background: #125ca3;
+}
+
+
+.metrics-section {
+    margin-bottom: 30px;
+}
+
+.metrics-section h2 {
+    margin-bottom: 15px;
+}
+
+.metrics-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(190px, 1fr)
+        );
+
+    gap: 15px;
+}
+
+.metric-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.metric-name {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+.metric-description {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+.metric-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+
+.table-section {
+    margin-bottom: 30px;
+}
+
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #1976d2;
+    color: white;
+}
+
+tr:hover td {
+    background: #f5f8fb;
+}
+
+.total-row td {
+    font-weight: bold;
+    background: #e8f1fa;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+}
+

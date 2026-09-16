@@ -4,7 +4,6 @@ const MIN_VALUE: i32 = 0;
 const MAX_VALUE: i32 = 100;
 const DEFAULT_NAME: &str = "Unknown";
 
-#[derive(Debug, Clone)]
 struct Student {
     name: String,
     age: u32,
@@ -94,12 +93,10 @@ fn main() {
         vec![75, 82, 91, 68, 55],
     );
 
-    println!("Numbers: {:?}", numbers);
     println!("Sum: {}", sum);
     println!("Maximum: {}", maximum);
     println!("Category: {}", category);
 
-    println!("Student: {:?}", student);
     println!("Name: {}", student.name);
     println!("Age: {}", student.age);
     println!("Average: {:.2}", student.average());

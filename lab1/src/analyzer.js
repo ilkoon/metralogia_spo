@@ -1,5 +1,4 @@
 const DECLARATION_KEYWORDS = new Set(["fn","struct","enum","trait","impl","let","const","static","type","mod","use","pub","mut","ref","move","where","crate","super","self","Self"]);
-const NON_OPERAND_KEYWORDS = new Set(["as","async","await","dyn","unsafe","extern","break","continue"]);
 const CONTROL_OPERATORS = new Set(["if","else","for","in","while","match","return"]);
 const SINGLE_CHAR_OPERATORS = new Set(["+","-","*","/","%","=","<",">","!","&","|","^","?",".",":",",",";"]);
 const MULTI_CHAR_OPERATORS = ["<<=",">>=","==","!=",">=","<=","+=","-=","*=","/=","%=","&&","||","->","=>","::","..=","..","<<",">>"];
@@ -122,7 +121,7 @@ export function analyzeRust(code) {
         const { type, value } = tokens[i];
         if (value === "fn") { fnDecl = true; continue; }
         if (fnDecl && type === "identifier") { fnDecl = false; continue; }
-        if (DECLARATION_KEYWORDS.has(value) || NON_OPERAND_KEYWORDS.has(value)) continue;
+        if (DECLARATION_KEYWORDS.has(value) ) continue;
 
         if (CONTROL_OPERATORS.has(value)) {
             if (value === "if") {

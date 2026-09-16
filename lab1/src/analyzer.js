@@ -1,5 +1,5 @@
 const DECLARATION_KEYWORDS = new Set(["fn","struct","enum","trait","impl","let","const","static","type","mod","use","pub","mut","ref","move","where","crate","super","self","Self"]);
-const CONTROL_OPERATORS = new Set(["if","else","for","in","while","match","return"]);
+const CONTROL_OPERATORS = new Set(["if","else","for","in","while","match", "break", "continue", "as", "return"]);
 const SINGLE_CHAR_OPERATORS = new Set(["+","-","*","/","%","=","<",">","!","&","|","^","?",".",":",",",";"]);
 const MULTI_CHAR_OPERATORS = ["<<=",">>=","==","!=",">=","<=","+=","-=","*=","/=","%=","&&","||","->","=>","::","..=","..","<<",">>"];
 

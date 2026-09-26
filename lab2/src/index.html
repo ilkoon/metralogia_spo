@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЕТРИКА ДЖИБЛА ДЛЯ RUST</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/red_icon.png">
+</head>
+<body>
+<div class="container">
+    <h1>АНАЛИЗ МЕТРИК ДЖИБЛА ДЛЯ RUST</h1>
+
+    <section class="toolbar">
+        <label class="file-button">
+            Открыть .rs файл
+            <input id="fileInput" type="file" accept=".rs">
+        </label>
+        <button id="analyzeButton">Рассчитать</button>
+    </section>
+
+    <section class="editor-section">
+        <h2>Исходный код Rust</h2>
+        <textarea id="sourceCode" spellcheck="false"
+            placeholder="Откройте .rs файл или вставьте код сюда..."></textarea>
+    </section>
+
+    <section class="result-section">
+        <h2>Результат</h2>
+        <div id="error" class="error hidden"></div>
+        <div class="metrics">
+            <div class="metric"><span>CL</span><strong id="cl">0</strong><small>абсолютная сложность</small></div>
+            <div class="metric"><span>cl</span><strong id="relativeCl">0</strong><small>относительная сложность</small></div>
+            <div class="metric"><span>CLI</span><strong id="cli">0</strong><small>макс. вложенность</small></div>
+            <div class="metric"><span>Операторы</span><strong id="operators">0</strong><small>всего операторов</small></div>
+        </div>
+
+    </section>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

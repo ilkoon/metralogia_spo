@@ -296,7 +296,7 @@ export function analyzeRust(code) {
                 }
 
                 const matchCLI = n >= 2
-                    ? currentDepth + 1 + (n - 2)
+                    ? currentDepth + 1 + (n - 3)
                     : currentDepth + 1;
 
                 CLI = Math.max(CLI, matchCLI);

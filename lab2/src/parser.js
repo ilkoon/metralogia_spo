@@ -148,7 +148,7 @@ function countMatchBranches(tokens, openIndex) {
 }
 
 const DECL_KEYWORDS = new Set([
-    "fn", "let", "const", "static", "struct", "enum",
+    "let", "const", "static", "struct", "enum",
     "trait", "impl", "mod", "use", "type"
 ]);
 
@@ -274,7 +274,7 @@ export function analyzeRust(code) {
         }
 
         else if (value === "loop") {
-            CL++;
+            //CL++;
             let j = i + 1;
             while (j < tokens.length && tokens[j].value !== "{") j++;
             const end = j < tokens.length ? findBlockEnd(tokens, j) : i;

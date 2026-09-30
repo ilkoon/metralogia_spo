@@ -1,67 +1,5 @@
-function removeCommentsAndStrings(code) {
-    let result = "";
-    let i = 0;
-
-    while (i < code.length) {
-        if (code.startsWith("//", i)) {
-            while (i < code.length && code[i] !== "\n") {
-                result += " ";
-                i++;
-            }
-            continue;
-        }
-
-        if (code.startsWith("/*", i)) {
-            result += "  ";
-            i += 2;
-            let depth = 1;
-            while (i < code.length && depth > 0) {
-                if (code.startsWith("/*", i)) {
-                    depth++;
-                    result += "  ";
-                    i += 2;
-                } else if (code.startsWith("*/", i)) {
-                    depth--;
-                    result += "  ";
-                    i += 2;
-                } else {
-                    result += code[i] === "\n" ? "\n" : " ";
-                    i++;
-                }
-            }
-            continue;
-        }
-
-        if (code[i] === '"' || code[i] === "'") {
-            const quote = code[i];
-            result += " ";
-            i++;
-
-            while (i < code.length) {
-                if (code[i] === "\\") {
-                    result += "  ";
-                    i += 2;
-                    continue;
-                }
-                if (code[i] === quote) {
-                    result += " ";
-                    i++;
-                    break;
-                }
-                result += code[i] === "\n" ? "\n" : " ";
-                i++;
-            }
-            continue;
-        }
-
-        result += code[i];
-        i++;
-    }
-    return result;
-}
-
 function tokenize(code) {
-    const clean = removeCommentsAndStrings(code);
+    const clean = code;
     const pattern = /=>|==|!=|<=|>=|&&|\|\||\+=|-=|\*=|\/=|%=|->|::|[A-Za-z_][A-Za-z0-9_]*|\d+(?:\.\d+)?|[{}()[\];,:.?]|[+\-*\/%<>=!&|^~]/g;
     return [...clean.matchAll(pattern)].map(m => ({
         value: m[0],
@@ -148,7 +86,7 @@ function countMatchBranches(tokens, openIndex) {
 }
 
 const DECL_KEYWORDS = new Set([
-    "let", "const", "static", "struct", "enum",
+     "let", "const", "static", "struct", "enum",
     "trait", "impl", "mod", "use", "type"
 ]);
 
@@ -292,11 +230,12 @@ export function analyzeRust(code) {
                 const n = result.branches;
 
                 if (n >= 1) {
-                    CL += n - 1;
+                    //CL += n - 1;
+                    CL += n;
                 }
 
                 const matchCLI = n >= 2
-                    ? currentDepth + 1 + (n - 3)
+                    ? currentDepth + 1 + (n - 2)
                     : currentDepth + 1;
 
                 CLI = Math.max(CLI, matchCLI);

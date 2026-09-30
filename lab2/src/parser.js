@@ -86,12 +86,12 @@ function countMatchBranches(tokens, openIndex) {
 }
 
 const DECL_KEYWORDS = new Set([
-     "let", "const", "static", "struct", "enum",
+    "let", "const", "static", "struct", "enum",
     "trait", "impl", "mod", "use", "type"
 ]);
 
 const CONTROL_KEYWORDS = new Set([
-    "if", "while", "for", "loop"
+    "if", "while", "for"
 ]);
 
 const JUMP_KEYWORDS = new Set([
@@ -106,28 +106,36 @@ function countStatements(tokens) {
         const v = tokens[i].value;
 
         if (v === "match") {
-            operators++;
+
+            let cnt = 0;
+
             let j = i + 1;
             while (j < tokens.length && tokens[j].value !== "{") j++;
+
             if (j < tokens.length) {
                 const closeIndex = findMatching(tokens, j, "{", "}");
+
                 if (closeIndex > 0) {
                     let depth = 0;
                     for (let k = j + 1; k < closeIndex; k++) {
                         const t = tokens[k].value;
                         if (t === "{") depth++;
-                        if (t === "}") depth--;
-                        if (depth === 0 && t === "=>") {
-                            operators++;
-                        }
+                        else if (t === "}") depth--;
+                        else if (depth === 0 && t === "=>") cnt++;
                     }
+
+                    operators += (cnt - 1) + cnt;
                     i = closeIndex + 1;
                     continue;
                 }
             }
+            
+            
+
             i++;
             continue;
         }
+
 
         if (CONTROL_KEYWORDS.has(v)) {
             operators++;
@@ -230,7 +238,7 @@ export function analyzeRust(code) {
                 const n = result.branches;
 
                 if (n >= 1) {
-                    //CL += n - 1;
+                    //CL += n - 1; 
                     CL += n;
                 }
 

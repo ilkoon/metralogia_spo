@@ -246,7 +246,7 @@ export function analyzeRust(code) {
                     ? currentDepth + 1 + (n - 2)
                     : currentDepth + 1;
 
-                CLI = Math.max(CLI, matchCLI);
+                CLI = Math.max(CLI, matchCLI) - 1;
                 constructions.push(
                     `match: ${n} ветвлений (default не учитывается), ` +
                     `CL += ${n >= 1 ? n - 1 : 0}, условная глубина до ${matchCLI}`

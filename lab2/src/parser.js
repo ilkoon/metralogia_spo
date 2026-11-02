@@ -243,8 +243,8 @@ export function analyzeRust(code) {
                 }
 
                 const matchCLI = n >= 2
-                    ? currentDepth + 1 + (n - 2)
-                    : currentDepth + 1;
+                    ? currentDepth + 1 + (n - 2) + 1
+                    : currentDepth + 2;
 
                 CLI = Math.max(CLI, matchCLI) - 1;
                 constructions.push(

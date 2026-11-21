@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Метрики потока данных — Rust</title>
+<link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/red_icon.png">
+</head>
+<body>
+<header>
+  <h1>Анализ метрик сложности потока данных</h1>
+  <p class="sub">Язык анализа: Rust · Метрики: Спен, Чепин (полная и ввода/вывода)</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Исходный код программы</h2>
+    <textarea id="src" spellcheck="false" placeholder="Вставьте код Rust или выберите файл .rs"></textarea>
+    <div class="controls">
+      <button id="analyze">Анализировать</button>
+      <button id="chooseFile" class="secondary">Выбрать файл (.rs)</button>
+      <!-- скрытый input для выбора файла -->
+      <input type="file" id="fileInput" accept=".rs,text/plain" hidden>
+      <span id="fileName" class="filename"></span>
+    </div>
+  </section>
+
+  <section class="card" id="spenSection" hidden>
+    <h2>Таблица спенов (аналог табл. 8)</h2>
+    <div id="spenTable"></div>
+    <p class="total" id="spenTotal"></p>
+  </section>
+
+  <section class="card" id="chepinSection" hidden>
+    <h2>Метрики Чепина (аналог табл. 9)</h2>
+    <div id="chepinTable"></div>
+    <div id="chepinFormula"></div>
+  </section>
+
+  <section class="card" id="graphSection" hidden>
+    <h2>График спенов идентификаторов</h2>
+    <canvas id="chart" width="700" height="300"></canvas>
+  </section>
+</main>
+
+<script src="parser.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>

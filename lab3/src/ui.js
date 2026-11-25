@@ -1,14 +1,10 @@
-/* ============================================================
-   МОДУЛЬ UI — работа с DOM, таблицами, canvas, кнопками
-   ============================================================ */
+
 (() => {
   const $ = sel => document.querySelector(sel);
 
-  // ---- Инициализация
   document.addEventListener('DOMContentLoaded', () => {
     $('#analyze').addEventListener('click', run);
 
-    // ---- Выбор файла .rs
     const fileInput = $('#fileInput');
     $('#chooseFile').addEventListener('click', () => fileInput.click());
 
@@ -16,7 +12,6 @@
       const file = fileInput.files && fileInput.files[0];
       if (!file) return;
 
-      // Проверка расширения (на случай, если accept не сработал)
       if (!/\.rs$/i.test(file.name)) {
         alert('Пожалуйста, выберите файл с расширением .rs');
         fileInput.value = '';
@@ -32,12 +27,11 @@
       reader.onerror = () => alert('Не удалось прочитать файл: ' + reader.error);
       reader.readAsText(file, 'UTF-8');
 
-      // Сброс, чтобы можно было выбрать тот же файл повторно
       fileInput.value = '';
     });
   });
 
-  // ---- Главный сценарий
+
   function run() {
     const code = $('#src').value;
     if (!code.trim()) return;
@@ -50,13 +44,10 @@
     }
     renderSpen(res.spen);
     renderChepin(res.chepin, res.chepinIO);
-    renderChart(res.spen);
     $('#spenSection').hidden = false;
     $('#chepinSection').hidden = false;
-    $('#graphSection').hidden = false;
   }
 
-  /* ---------- Таблица 8: спены ---------- */
   function renderSpen(spen) {
     const items = spen.items;
     if (!items.length) {
@@ -74,10 +65,10 @@
     const details = items.map(it => `${escapeHtml(it.name)}: всего ${it.total}, спен ${it.spen}`).join('; ');
     $('#spenTotal').innerHTML =
       `Суммарный спен программы = <b>${spen.total}</b>` +
-      `<br><span style="color:#9aa4b8;font-weight:400;font-size:12px">${details}</span>`;
+      `<br><span style="color:#6b7280;font-weight:400;font-size:12px">${details}</span>`;
   }
 
-  /* ---------- Таблица 9: Чепин ---------- */
+
   function renderChepin(full, io) {
     const html = `
       <table>
@@ -135,63 +126,5 @@
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, ch =>
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-  }
-
-  /* ---------- График (canvas, без библиотек) ---------- */
-  function renderChart(spen) {
-    const canvas = $('#chart');
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
-
-    const items = spen.items;
-    if (!items.length) return;
-
-    const pad = { l: 50, r: 20, t: 20, b: 70 };
-    const plotW = W - pad.l - pad.r;
-    const plotH = H - pad.t - pad.b;
-    const maxV = Math.max(1, ...items.map(it => it.spen));
-
-    // оси
-    ctx.strokeStyle = '#2a3245';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(pad.l, pad.t);
-    ctx.lineTo(pad.l, pad.t + plotH);
-    ctx.lineTo(pad.l + plotW, pad.t + plotH);
-    ctx.stroke();
-
-    // горизонтальные линии
-    ctx.strokeStyle = '#1d2433';
-    ctx.fillStyle = '#6b7a99';
-    ctx.font = '11px Consolas, monospace';
-    for (let v = 0; v <= maxV; v++) {
-      const y = pad.t + plotH - (v / maxV) * plotH;
-      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + plotW, y); ctx.stroke();
-      ctx.fillText(String(v), pad.l - 28, y + 4);
-    }
-
-    // столбцы
-    const bw = plotW / items.length;
-    items.forEach((it, i) => {
-      const x = pad.l + i * bw + bw * 0.15;
-      const w = bw * 0.7;
-      const h = (it.spen / maxV) * plotH;
-      const y = pad.t + plotH - h;
-      const g = ctx.createLinearGradient(0, y, 0, y + h);
-      g.addColorStop(0, '#4d73e8');
-      g.addColorStop(1, '#2a3a6b');
-      ctx.fillStyle = g;
-      ctx.fillRect(x, y, w, h);
-
-      ctx.fillStyle = '#d6e2f0';
-      ctx.font = '11px Consolas, monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText(it.name, x + w / 2, pad.t + plotH + 18);
-      if (it.spen > 0) ctx.fillText(String(it.spen), x + w / 2, y - 6);
-    });
-    ctx.textAlign = 'start';
-    ctx.fillStyle = '#6b7a99';
-    ctx.fillText('спен', pad.l - 40, pad.t - 6);
   }
 })();

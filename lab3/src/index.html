@@ -9,7 +9,7 @@
 <body>
 <header>
   <h1>Анализ метрик сложности потока данных</h1>
-  <p class="sub">Язык анализа: Rust · Метрики: Спен, Чепин (полная и ввода/вывода)</p>
+  
 </header>
 
 <main>
@@ -19,7 +19,6 @@
     <div class="controls">
       <button id="analyze">Анализировать</button>
       <button id="chooseFile" class="secondary">Выбрать файл (.rs)</button>
-      <!-- скрытый input для выбора файла -->
       <input type="file" id="fileInput" accept=".rs,text/plain" hidden>
       <span id="fileName" class="filename"></span>
     </div>
@@ -37,10 +36,7 @@
     <div id="chepinFormula"></div>
   </section>
 
-  <section class="card" id="graphSection" hidden>
-    <h2>График спенов идентификаторов</h2>
-    <canvas id="chart" width="700" height="300"></canvas>
-  </section>
+
 </main>
 
 <script src="parser.js"></script>
